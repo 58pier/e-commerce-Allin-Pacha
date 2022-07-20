@@ -14,9 +14,10 @@ type SlideIndex = {
 const Container = styled.div`
     margin-top: 2%;
     width: 100%;
-    display: flex;
     height: 40vh;
+    display: flex;
     position: relative;
+    overflow: hidden;
 `
 const Arrow = styled.div<ArrowProps>`
     width: 50px;
@@ -39,7 +40,9 @@ const Arrow = styled.div<ArrowProps>`
 const Wrapper = styled.div<SlideIndex>`
     height: 100%;
     width: 100%;
+    max-width: 100%;
     display: flex;
+    transition: all 1s ease;
     transform: ${(props) => {  return `translate(${props.slideIndex * -100}vw)`}};
 `
 const Slide = styled.div`
@@ -109,7 +112,7 @@ const Slider = () => {
                                 </Typography>
                                 <Button variant='contained' sx={{
                                     color: 'white',
-                                    backgroundColor: '#ff5a5f',
+                                    backgroundColor: '#4256ac',
                                     marginTop: '25px',
                                 }}>
                                     Ver más

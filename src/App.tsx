@@ -1,9 +1,11 @@
-import Home from './components/pages/Home';
+import CategoryPage from './components/pages/CatalogPage';
+import Home from './components/pages/HomePage';
 
 const App = () => {
 
   return (
-    <Home/>
+    // <Home/>
+    <CategoryPage/>
   )
 }
 
