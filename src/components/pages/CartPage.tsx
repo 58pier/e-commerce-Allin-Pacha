@@ -1,6 +1,7 @@
 import Navbar from "../organisms/Navbar"
 import styled from '@emotion/styled';
 import { Input, Link, Table, TableBody, TableCell, TableFooter, TableHead, TableRow, Typography, Button } from '@mui/material';
+import { getAllProductsByRating, getLimitProducts, getCategoryProducts } from '../../hooks/getHooks';
 
 type SectionDetailsPriceProps = {
     lineaSuperior?: boolean,
@@ -51,6 +52,8 @@ const SectionDetailsPrice = styled.div<SectionDetailsPriceProps>`
 `
 
 const CartPage = () => {
+
+
     return (
         <>
             <Navbar/>
