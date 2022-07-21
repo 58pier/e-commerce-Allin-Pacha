@@ -5,6 +5,11 @@ import Acordion from '../atoms/Acordion';
 
 import { IconNav } from '../atoms/IconNav';
 
+//TODO: refactor this component
+interface FilterSectionProps {
+    setSearchParams: any;
+}
+
 const Container = styled.div`
     width: 100%;
     flex: 1;
@@ -18,7 +23,7 @@ const AcordionSection = styled.div`
 
 `
 
-const FilterSection = () => {
+const FilterSection = ({setSearchParams}:FilterSectionProps) => {
     return (
         <Container>
             <Header>
@@ -26,7 +31,7 @@ const FilterSection = () => {
                 <IconNav Icon={RemoveIcon} size={'small'} text="Colapsar" directionIcon="right" />
             </Header>
             <AcordionSection>
-                <Acordion/>
+                <Acordion setSearchParams={setSearchParams}/>
             </AcordionSection>
         </Container>
     )

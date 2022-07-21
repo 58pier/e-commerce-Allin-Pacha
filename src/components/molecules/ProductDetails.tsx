@@ -2,6 +2,11 @@ import styled from '@emotion/styled';
 import { Add, Remove, ShoppingBag, FavoriteBorder } from '@mui/icons-material';
 import { IconButton, Rating, Typography, Button, Paper } from '@mui/material';
 import { fontWeight } from '@mui/system';
+import { Product } from '../../interfaces/ProductInteface';
+
+interface ProductDetailsProps {
+    product: Product;
+}
 
 const Container = styled.div`
     display: flex;
@@ -37,21 +42,21 @@ const ButtonsContainer = styled.div`
     align-items: center;
 `
 
-const ProductDetails = () => {
+const ProductDetails = ({product}:ProductDetailsProps) => {
     return (
             <Paper elevation={5} sx={{marginTop: '20px'}}>
                 <Container>
                     <ImageContainer>
                         <Image
-                            src='https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'
-                            alt='Product'
+                            src={product.image}
+                            alt={product.title}
                         />
                     </ImageContainer>
                     <InfoContainer>
-                        <Typography variant='h5' fontWeight={'bold'}> Product Name </Typography>
+                        <Typography variant='h5' fontWeight={'bold'}> {product.title} </Typography>
                         <RatingNumber>
                                         <Rating
-                                            defaultValue={4.5}
+                                            defaultValue={product.rating.rate}
                                             readOnly
                                             precision={0.5}
                                             size="small"
@@ -68,13 +73,13 @@ const ProductDetails = () => {
                                                 textDecoration: 'underline',
                                             }}
                                         >
-                                            ({100} reviews)
+                                            ({product.rating.count} reviews)
                                         </Typography>
                                     </RatingNumber>
                         <Typography variant='body1'>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat dolorum in tempora necessitatibus illo quas reiciendis laborum autem exercitationem consequatur, non asperiores quod esse odio. Rem doloribus minus incidunt exercitationem.
+                            {product.description}
                         </Typography>
-                        <Typography variant='h4' color={'#4256ac'} fontWeight={'bold'} marginTop={5} >S/.800.00</Typography>
+                        <Typography variant='h4' color={'#4256ac'} fontWeight={'bold'} marginTop={5} >S/.{product.price}</Typography>
                         <ButtonsContainer>
                             <Button
                                 variant='contained'

@@ -9,6 +9,9 @@ interface getCategoryProductsProps {
     category: string,
     limit?: number
 }
+interface getSingleProductProps{
+    id: string
+}
 
 export const getAllProducts = () => {
 
@@ -35,6 +38,19 @@ export const getLimitProducts = ({limit}:getLimitProductsProps) => {
     return(products);
 }
 
+export const getSingleProduct = ({id}:getSingleProductProps) => {
+
+    const [product, setProduct] = useState<Product>();
+
+    useEffect(() => {
+        api.get('products/'+id)
+        .then(res => {
+            setProduct(res.data);
+        }).catch(err => console.log(err));
+    }, []);
+    return(product);
+}
+
 export const getAllProductsByRating = ({limit}:getLimitProductsProps) => {
 
     const [products, setProducts] = useState<Array<Product>>([]);
@@ -51,6 +67,18 @@ export const getAllProductsByRating = ({limit}:getLimitProductsProps) => {
 
 
     return(products);
+}
+
+export const getAllCategories = () => {
+    const [categories, setCategories] = useState<Array<string>>([]);
+
+    useEffect(() => {
+        api.get('products/categories')
+        .then(res => {
+            setCategories(res.data);
+        }).catch(err => console.log(err));
+    }, []);
+    return(categories);
 }
 
 export const getCategoryProducts = ({category, limit=0}: getCategoryProductsProps) => {

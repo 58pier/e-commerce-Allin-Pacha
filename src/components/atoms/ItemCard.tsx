@@ -1,8 +1,9 @@
-import { Card, CardActionArea, CardContent, CardMedia, Paper, Rating, Typography } from '@mui/material';
+import { Card, CardActionArea, CardContent, CardMedia, MenuItem, Paper, Rating, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import { red } from '@mui/material/colors';
 import { FavoriteBorder } from '@mui/icons-material';
 import { Product } from '../../interfaces/ProductInteface';
+import { Link } from 'react-router-dom';
 
 interface CardItemProps {
     product: Product;
@@ -22,108 +23,110 @@ const RatingNumber = styled.div`
 
 const CardItem = ({product}:CardItemProps) => {
     return (
-        <Container>
-            <Paper elevation={1} >
-                <Card sx={{
-                '&:hover': {
-                    border: '0.5px solid #e0e0e0',
-                    transition: "all 0.5s ease",
-                },
-                width: '100%',
-                height: '420px',
-                minHeight: '410px',
-            }} >
-                    <CardActionArea
-                        sx={{
-                            p: "10px",
-                            justifyContent: "end",
-                        }}
-                    >
-                        <FavoriteBorder 
-                            fontSize='small'
-                            titleAccess='Agregar a favoritos'
+        <MenuItem component={Link} to={`/product/${product.id}`}>
+            <Container>
+                <Paper elevation={1} >
+                    <Card sx={{
+                    '&:hover': {
+                        border: '0.5px solid #e0e0e0',
+                        transition: "all 0.5s ease",
+                    },
+                    width: '100%',
+                    height: '420px',
+                    minHeight: '410px',
+                }} >
+                        <CardActionArea
                             sx={{
-                                '&:hover': {
-                                    color: '#e0e0e0',
-                                },
-                                float: 'right',
-                                mb: "5px"
+                                p: "10px",
+                                justifyContent: "end",
                             }}
-                        />
-                        <CardMedia
-                            component="img"
-                            height="230"
-                            image={product.image}
-                            alt="Camisa hombre"
-                            title='Ver detalles del producto'
-                            sx={{
-                                '&:hover': {
-                                    transform: "scale(1.05)",
-                                    transition: "all 0.5s ease",
-                                },
-                            }}
-                        />
-                        <CardContent>
-                            <Typography
-                                variant='h6'
-                                component="div"
+                        >
+                            <FavoriteBorder 
+                                fontSize='small'
+                                titleAccess='Agregar a favoritos'
                                 sx={{
-                                    fontWeight: '450',
-                                    fontSize: '1rem',
+                                    '&:hover': {
+                                        color: '#e0e0e0',
+                                    },
+                                    float: 'right',
+                                    mb: "5px"
                                 }}
-                            >
-                                {product.title.slice(0,15)}
-                            </Typography>
-                            <Typography
-                                variant='body2'
-                                gutterBottom
+                            />
+                            <CardMedia
+                                component="img"
+                                height="230"
+                                image={product.image}
+                                alt="Camisa hombre"
+                                title='Ver detalles del producto'
                                 sx={{
-                                    fontWeight: '500',
-                                    fontSize: '0.8rem',
-                                    height: '2%',
-                                    maxHeight: '400px',
+                                    '&:hover': {
+                                        transform: "scale(1.05)",
+                                        transition: "all 0.5s ease",
+                                    },
                                 }}
-                            >
-                                {product.description.slice(0,40)}
-                            </Typography>
-                            <Typography
-                                variant='subtitle1'
-                                align='right'
-                                gutterBottom
-                                sx={{
-                                    fontWeight: '450',
-                                    color: '#4256ac',
-                                    fontStyle: 'italic',
-                                }}
-                            >
-                                S/.{product.price}
-                            </Typography>
-                            <RatingNumber>
-                                <Rating
-                                    defaultValue={product.rating.rate}
-                                    readOnly
-                                    precision={0.5}
-                                    size="small"
-                                    sx={{
-                                        mr: '10px',
-                                        color: 'black'
-                                    }}
-                                />
+                            />
+                            <CardContent>
                                 <Typography
-                                    variant='body2'
+                                    variant='h6'
+                                    component="div"
                                     sx={{
-                                        fontWeight: '500',
-                                        letterSpacing: '0.5px',
+                                        fontWeight: '450',
+                                        fontSize: '1rem',
                                     }}
                                 >
-                                    {product.rating.count}
+                                    {product.title.slice(0,15)}
                                 </Typography>
-                            </RatingNumber>
-                        </CardContent>
-                    </CardActionArea>
-                </Card>
-            </Paper>
-        </Container>
+                                <Typography
+                                    variant='body2'
+                                    gutterBottom
+                                    sx={{
+                                        fontWeight: '500',
+                                        fontSize: '0.8rem',
+                                        height: '2%',
+                                        maxHeight: '400px',
+                                    }}
+                                >
+                                    {product.description.slice(0,40)}
+                                </Typography>
+                                <Typography
+                                    variant='subtitle1'
+                                    align='right'
+                                    gutterBottom
+                                    sx={{
+                                        fontWeight: '450',
+                                        color: '#4256ac',
+                                        fontStyle: 'italic',
+                                    }}
+                                >
+                                    S/.{product.price}
+                                </Typography>
+                                <RatingNumber>
+                                    <Rating
+                                        defaultValue={product.rating.rate}
+                                        readOnly
+                                        precision={0.5}
+                                        size="small"
+                                        sx={{
+                                            mr: '10px',
+                                            color: 'black'
+                                        }}
+                                    />
+                                    <Typography
+                                        variant='body2'
+                                        sx={{
+                                            fontWeight: '500',
+                                            letterSpacing: '0.5px',
+                                        }}
+                                    >
+                                        {product.rating.count}
+                                    </Typography>
+                                </RatingNumber>
+                            </CardContent>
+                        </CardActionArea>
+                    </Card>
+                </Paper>
+            </Container>
+        </MenuItem>
     )
 }
 

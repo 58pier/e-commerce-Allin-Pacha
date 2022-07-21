@@ -4,7 +4,7 @@ import { Product } from '../../interfaces/ProductInteface';
 import CardItem from '../atoms/ItemCard';
 
 interface GridProductsProps {
-    title: string;
+    title?: string;
     products: Product[];
 }
 
@@ -15,7 +15,7 @@ const Container = styled.div`
     position: relative;
 `
 
-const GridProducts = ({title, products}:GridProductsProps) => {
+const GridProducts = ({title="", products}:GridProductsProps) => {
     return (
         <Container>
             <Typography

@@ -5,6 +5,8 @@ import { Grid } from '@mui/material';
 import GridProducts from '../molecules/GridProducts';
 import styled from '@emotion/styled';
 import FilterSection from '../organisms/FilterSection';
+import { useLocation, useSearchParams, useParams } from 'react-router-dom';
+import CatalogProducts from '../organisms/CatalogProducts';
 
 const Container = styled.div`
     width: 100%;
@@ -26,17 +28,17 @@ const ContainerGrid = styled.div`
 `
 
 const CatalogPage = () => {
-    const products = getAllProducts();
-    console.log(products);
+    const [searchParams, setSearchParams] =useSearchParams();
+
     return (
         <>
             <Navbar/>
             <Container>
-                <ContainerFilter>
-                    <FilterSection/>
+                <ContainerFilter >
+                    <FilterSection setSearchParams={setSearchParams} />
                 </ContainerFilter>
                 <ContainerGrid>
-                    <GridProducts products={products} title=""/>
+                    <CatalogProducts/>
                 </ContainerGrid>
             </Container>
         </>
