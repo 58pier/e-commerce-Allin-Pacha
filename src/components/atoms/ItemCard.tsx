@@ -2,11 +2,17 @@ import { Card, CardActionArea, CardContent, CardMedia, Paper, Rating, Typography
 import styled from '@emotion/styled';
 import { red } from '@mui/material/colors';
 import { FavoriteBorder } from '@mui/icons-material';
+import { Product } from '../../interfaces/ProductInteface';
+
+interface CardItemProps {
+    product: Product;
+}
 
 const Container = styled.div`
     border-color: #e0e0e0;
-    height: 400px;
+    height: 450px;
     width: 100%;
+    min-height: 450px;
 `
 const RatingNumber = styled.div`
     display: flex;
@@ -14,15 +20,18 @@ const RatingNumber = styled.div`
     align-items: center;
 `
 
-const CardItem = () => {
+const CardItem = ({product}:CardItemProps) => {
     return (
         <Container>
-            <Paper elevation={1}  >
+            <Paper elevation={1} >
                 <Card sx={{
                 '&:hover': {
                     border: '0.5px solid #e0e0e0',
                     transition: "all 0.5s ease",
-                }
+                },
+                width: '100%',
+                height: '420px',
+                minHeight: '410px',
             }} >
                     <CardActionArea
                         sx={{
@@ -44,7 +53,7 @@ const CardItem = () => {
                         <CardMedia
                             component="img"
                             height="230"
-                            image="https://www.picclickimg.com/d/l400/pict/303519214509_/Camisetas-Polo-De-Hombre-Ropa-Camisas-de-Moda.jpg"
+                            image={product.image}
                             alt="Camisa hombre"
                             title='Ver detalles del producto'
                             sx={{
@@ -63,7 +72,7 @@ const CardItem = () => {
                                     fontSize: '1rem',
                                 }}
                             >
-                                Polo Jean
+                                {product.title.slice(0,15)}
                             </Typography>
                             <Typography
                                 variant='body2'
@@ -71,9 +80,11 @@ const CardItem = () => {
                                 sx={{
                                     fontWeight: '500',
                                     fontSize: '0.8rem',
+                                    height: '2%',
+                                    maxHeight: '400px',
                                 }}
                             >
-                                Polo Jean fabricado con excelente calidad.
+                                {product.description.slice(0,40)}
                             </Typography>
                             <Typography
                                 variant='subtitle1'
@@ -85,11 +96,11 @@ const CardItem = () => {
                                     fontStyle: 'italic',
                                 }}
                             >
-                                S/.100.00
+                                S/.{product.price}
                             </Typography>
                             <RatingNumber>
                                 <Rating
-                                    defaultValue={4.2}
+                                    defaultValue={product.rating.rate}
                                     readOnly
                                     precision={0.5}
                                     size="small"
@@ -105,7 +116,7 @@ const CardItem = () => {
                                         letterSpacing: '0.5px',
                                     }}
                                 >
-                                    (100)
+                                    {product.rating.count}
                                 </Typography>
                             </RatingNumber>
                         </CardContent>
