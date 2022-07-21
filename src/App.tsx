@@ -3,6 +3,7 @@ import Home from './components/pages/HomePage';
 import ProductPage from './components/pages/ProductPage';
 import RegisterPage from './components/pages/RegisterPage';
 import Login from './components/pages/Login';
+import CartPage from './components/pages/CartPage';
 
 const App = () => {
 
@@ -11,7 +12,8 @@ const App = () => {
     // <CategoryPage/>
     // <ProductPage/>
     // <RegisterPage/>
-    <Login/>
+    // <Login/>
+    <CartPage/>
   )
 }
 
