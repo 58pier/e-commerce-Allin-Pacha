@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 import LogoImage from '../../assets/logo_transparent.png';
 
 
@@ -12,7 +13,9 @@ const Img = styled.img`
 const Logo = () => {
     return (
         <LogoContainer>
-                <Img src={LogoImage} alt="Logo"/>
+                <Link to='/'>
+                    <Img src={LogoImage} alt="Logo"/>
+                </Link>
         </LogoContainer>
     )
 }
