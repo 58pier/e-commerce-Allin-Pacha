@@ -6,7 +6,7 @@ interface getLimitProductsProps  {
     limit: number,
 }
 interface getCategoryProductsProps {
-    category: string | null,
+    category: string,
     limit?: number
 }
 interface getSingleProductProps{
