@@ -23,7 +23,7 @@ const AcordionSection = styled.div`
 
 `
 
-const FilterSection = ({setSearchParams}:FilterSectionProps) => {
+const FilterSection = () => {
     return (
         <Container>
             <Header>
@@ -31,7 +31,7 @@ const FilterSection = ({setSearchParams}:FilterSectionProps) => {
                 <IconNav Icon={RemoveIcon} size={'small'} text="Colapsar" directionIcon="right" />
             </Header>
             <AcordionSection>
-                <Acordion setSearchParams={setSearchParams}/>
+                <Acordion />
             </AcordionSection>
         </Container>
     )

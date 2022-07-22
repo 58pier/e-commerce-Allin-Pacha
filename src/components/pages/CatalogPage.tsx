@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../organisms/Navbar';
-import { getAllProducts } from '../../hooks/getHooks';
+import { getAllProducts, getCategoryProducts } from '../../hooks/getHooks';
 import { Grid } from '@mui/material';
 import GridProducts from '../molecules/GridProducts';
 import styled from '@emotion/styled';
 import FilterSection from '../organisms/FilterSection';
 import { useLocation, useSearchParams, useParams } from 'react-router-dom';
 import CatalogProducts from '../organisms/CatalogProducts';
+import { Product } from '../../interfaces/ProductInteface';
 
 const Container = styled.div`
     width: 100%;
@@ -29,16 +30,34 @@ const ContainerGrid = styled.div`
 
 const CatalogPage = () => {
     const [searchParams, setSearchParams] =useSearchParams();
+    let products= getAllProducts();
+
+    const activeCategory = searchParams.get('category');
+
+    useEffect(() => {
+        fetchProducts(activeCategory)
+        console.log(activeCategory);
+    }, [activeCategory])
+    
+
+    const fetchProducts = async (category:string|null) => {
+        if(category){
+            products = await getAllProducts();
+        }else{
+            products = await getCategoryProducts({category:category});
+        }
+    }
+
 
     return (
         <>
             <Navbar/>
             <Container>
                 <ContainerFilter >
-                    <FilterSection setSearchParams={setSearchParams} />
+                    <FilterSection />
                 </ContainerFilter>
                 <ContainerGrid>
-                    <CatalogProducts/>
+                    <GridProducts products={products}/>
                 </ContainerGrid>
             </Container>
         </>

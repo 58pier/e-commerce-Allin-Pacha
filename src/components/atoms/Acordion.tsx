@@ -3,15 +3,15 @@ import { Accordion, AccordionDetails, AccordionSummary, Typography, MenuItem, Bu
 
 import { ExpandMore } from '@mui/icons-material';
 import { getAllCategories } from '../../hooks/getHooks';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 const Container = styled.div`
     margin-top: 5px;
 `
 interface AcordionProps {
     setSearchParams: any;
 }
-const Acordion = ({setSearchParams}:AcordionProps ) => {
-
+const Acordion = () => {
+    const [,setSearchParams] = useSearchParams();
     const handleClick = (event:any, category:string) => {
         setSearchParams({
             category: category
